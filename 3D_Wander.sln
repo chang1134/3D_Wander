@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3D_Wander", "3D_Wander.csproj", "{9E171EEE-237B-E3CE-5CFD-797028159518}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3D_Wander.Editor", "3D_Wander.Editor.csproj", "{2F5C4391-1AB9-133B-3540-89DA3E110E08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{9E171EEE-237B-E3CE-5CFD-797028159518}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E171EEE-237B-E3CE-5CFD-797028159518}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E171EEE-237B-E3CE-5CFD-797028159518}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F5C4391-1AB9-133B-3540-89DA3E110E08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F5C4391-1AB9-133B-3540-89DA3E110E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F5C4391-1AB9-133B-3540-89DA3E110E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F5C4391-1AB9-133B-3540-89DA3E110E08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
