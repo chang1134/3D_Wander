@@ -50,8 +50,8 @@ namespace Invector.CharacterController
             tpCamera = FindObjectOfType<vThirdPersonCamera>();
             if (tpCamera) tpCamera.SetMainTarget(this.transform);
 
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
         }
 
         protected virtual void LateUpdate()
@@ -90,9 +90,9 @@ namespace Invector.CharacterController
         #region Basic Locomotion Inputs      
 
         protected virtual void MoveCharacter()
-        {            
-            cc.input.x = Input.GetAxis(horizontalInput);
-            cc.input.y = Input.GetAxis(verticallInput);
+        {
+            cc.input.x = ScrollCircle.Instance.horizontalValue;// Input.GetAxis(horizontalInput);
+            cc.input.y = ScrollCircle.Instance.verticalValue;//Input.GetAxis(verticallInput);
         }
 
         protected virtual void StrafeInput()
@@ -105,7 +105,7 @@ namespace Invector.CharacterController
         {
             if (Input.GetKeyDown(sprintInput))
                 cc.Sprint(true);
-            else if(Input.GetKeyUp(sprintInput))
+            else if (Input.GetKeyUp(sprintInput))
                 cc.Sprint(false);
         }
 
@@ -130,21 +130,44 @@ namespace Invector.CharacterController
         #endregion
 
         #region Camera Methods
-
+        private bool isCanRotate = false;
+        private Vector3 oldPos = Vector3.zero;
         protected virtual void CameraInput()
         {
-            if (tpCamera == null)
+            if (tpCamera == null || Input.touchCount == 0)
                 return;
-            var Y = Input.GetAxis(rotateCameraYInput);
-            var X = Input.GetAxis(rotateCameraXInput);
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                //判断是否是虚拟摇杆的点
+                if (Vector3.Distance(Input.touches[i].position, ScrollCircle.Instance.dragPos) < 30 && Input.touches[i].position != Vector2.zero)
+                {
+                    continue;
+                }
+                switch (Input.touches[i].phase)
+                {
+                    case TouchPhase.Began:
+                        isCanRotate = !ScrollCircle.Instance.isContineMouse(Input.touches[i].position);
+                        break;
+                    case TouchPhase.Moved:
+                        var Y = (Input.touches[i].position.y - oldPos.y) / 10;
+                        var X = (Input.touches[i].position.x - oldPos.x) / 10;
 
-            tpCamera.RotateCamera(X, Y);
-
-            // tranform Character direction from camera if not KeepDirection
-            if (!keepDirection)
-                cc.UpdateTargetDirection(tpCamera != null ? tpCamera.transform : null);
-            // rotate the character with the camera while strafing        
-            RotateWithCamera(tpCamera != null ? tpCamera.transform : null);            
+                        if (Vector3.Distance(Input.touches[i].position, oldPos) < 50)
+                        {
+                            tpCamera.RotateCamera(X, Y);
+                            // tranform Character direction from camera if not KeepDirection
+                            if (!keepDirection)
+                                cc.UpdateTargetDirection(tpCamera != null ? tpCamera.transform : null);
+                            // rotate the character with the camera while strafing        
+                            RotateWithCamera(tpCamera != null ? tpCamera.transform : null);
+                        }
+                        oldPos = Input.touches[i].position;
+                        break;
+                    case TouchPhase.Ended:
+                        isCanRotate = false;
+                        break;
+                }
+            }
         }
 
         protected virtual void UpdateCameraStates()
