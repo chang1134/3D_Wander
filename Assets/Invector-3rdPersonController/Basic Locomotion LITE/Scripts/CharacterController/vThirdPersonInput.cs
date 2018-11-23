@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 #if UNITY_5_3_OR_NEWER
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 #endif
 
 namespace Invector.CharacterController
@@ -63,6 +64,27 @@ namespace Invector.CharacterController
 
         protected virtual void FixedUpdate()
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                //射线检测，播放视频
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit))
+                {
+                    VideoPlayer videoPlayer = hit.transform.GetComponent<VideoPlayer>();
+                    if (videoPlayer != null)
+                    {
+                        if (videoPlayer.isPlaying)
+                        {
+                            videoPlayer.Pause();
+                        }
+                        else
+                        {
+                            videoPlayer.Play();
+                        }
+                    }
+                }
+            }
             cc.AirControl();
             CameraInput();
         }
@@ -134,8 +156,8 @@ namespace Invector.CharacterController
         private Vector3 oldPos = Vector3.zero;
         protected virtual void CameraInput()
         {
-            if (tpCamera == null || Input.touchCount == 0)
-                return;
+            if (tpCamera == null)
+                return; 
             for (int i = 0; i < Input.touchCount; i++)
             {
                 //判断是否是虚拟摇杆的点
