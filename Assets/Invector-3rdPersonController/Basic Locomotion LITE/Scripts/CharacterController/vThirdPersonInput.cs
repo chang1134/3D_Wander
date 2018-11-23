@@ -21,6 +21,10 @@ namespace Invector.CharacterController
         public string rotateCameraXInput ="Mouse X";
         public string rotateCameraYInput = "Mouse Y";
 
+        public AudioSource audioPlayer1;
+        public AudioSource audioPlayer2;
+        public AudioSource audioPlayerBg;
+
         protected vThirdPersonCamera tpCamera;                // acess camera info        
         [HideInInspector]
         public string customCameraState;                    // generic string to change the CameraState        
@@ -81,9 +85,14 @@ namespace Invector.CharacterController
                         else
                         {
                             videoPlayer.Play();
+                            audioPlayerBg.Pause();
                         }
                     }
                 }
+            }
+            if (!audioPlayer1.isPlaying && !audioPlayer2.isPlaying && !audioPlayerBg.isPlaying)
+            {
+                audioPlayerBg.Play();
             }
             cc.AirControl();
             CameraInput();
