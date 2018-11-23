@@ -21,8 +21,8 @@ namespace Invector.CharacterController
         public string rotateCameraXInput ="Mouse X";
         public string rotateCameraYInput = "Mouse Y";
 
-        public AudioSource audioPlayer1;
-        public AudioSource audioPlayer2;
+        public VideoPlayer videoPlayer1;
+        public VideoPlayer videoPlayer2;
         public AudioSource audioPlayerBg;
 
         protected vThirdPersonCamera tpCamera;                // acess camera info        
@@ -81,6 +81,10 @@ namespace Invector.CharacterController
                         if (videoPlayer.isPlaying)
                         {
                             videoPlayer.Pause();
+                            if (!videoPlayer1.isPlaying && !videoPlayer2.isPlaying && !audioPlayerBg.isPlaying)
+                            {
+                                audioPlayerBg.Play();
+                            }
                         }
                         else
                         {
@@ -89,10 +93,6 @@ namespace Invector.CharacterController
                         }
                     }
                 }
-            }
-            if (!audioPlayer1.isPlaying && !audioPlayer2.isPlaying && !audioPlayerBg.isPlaying)
-            {
-                audioPlayerBg.Play();
             }
             cc.AirControl();
             CameraInput();

@@ -282,6 +282,14 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11486748, guid: 1f8dfc02bc7e3e444bd8ff7f039199b6, type: 2}
+      propertyPath: defaultDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486748, guid: 1f8dfc02bc7e3e444bd8ff7f039199b6, type: 2}
+      propertyPath: height
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f8dfc02bc7e3e444bd8ff7f039199b6, type: 2}
   m_IsPrefabParent: 0
@@ -1424,11 +1432,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1911535850600208, guid: 5a5453d5d9fdc644dad41efa039023bf, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1226842831578106, guid: 5a5453d5d9fdc644dad41efa039023bf, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4864392236645410, guid: 5a5453d5d9fdc644dad41efa039023bf, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1762,6 +1770,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23745759023537472, guid: 5a5453d5d9fdc644dad41efa039023bf,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e49f6b5e88fa65a41a6998518ae54466, type: 2}
     m_RemovedComponents:
     - {fileID: 64091559472050836, guid: 5a5453d5d9fdc644dad41efa039023bf, type: 2}
     - {fileID: 64286316641652802, guid: 5a5453d5d9fdc644dad41efa039023bf, type: 2}
@@ -2289,7 +2302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1535303448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2775,9 +2788,17 @@ Prefab:
       value: vThirdPersonController
       objectReference: {fileID: 0}
     - target: {fileID: 11467016, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 2}
-      propertyPath: forbitClickAreaTrans
+      propertyPath: videoPlayer1
       value: 
-      objectReference: {fileID: 1653479946}
+      objectReference: {fileID: 461377378}
+    - target: {fileID: 11467016, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 2}
+      propertyPath: videoPlayer2
+      value: 
+      objectReference: {fileID: 1204551564}
+    - target: {fileID: 11467016, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 2}
+      propertyPath: audioPlayerBg
+      value: 
+      objectReference: {fileID: 72751150}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 2}
   m_IsPrefabParent: 0
